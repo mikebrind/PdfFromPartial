@@ -2,7 +2,7 @@
 using PdfFromPartial.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace BlazorWasmReleaseNotes.Server.Services;
+namespace PdfFromPartial.Services;
 
 public class CustomerManager : ICustomerManager
 {

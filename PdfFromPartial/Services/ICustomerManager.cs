@@ -1,6 +1,6 @@
 ﻿using PdfFromPartial.Models;
 
-namespace BlazorWasmReleaseNotes.Server.Services;
+namespace PdfFromPartial.Services;
 
 public interface ICustomerManager
 {
