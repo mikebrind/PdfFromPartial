@@ -14,7 +14,7 @@ builder.Services.AddDbContext<NorthwindContext>(options => options.UseSqlite(bui
 builder.Services.AddScoped<ICustomerManager, CustomerManager>();
 builder.Services.AddScoped<IProductManager, ProductManager>();
 builder.Services.AddSingleton<IConverter>(provider => new SynchronizedConverter(new PdfTools()));
-builder.Services.AddScoped<IRazorTemplateRenderer, IRazorTemplateRenderer>();
+builder.Services.AddScoped<IRazorTemplateRenderer, RazorTemplateRenderer>();
 builder.Services.AddSingleton<IPdfGenerator, PdfGenerator>();
 
 var app = builder.Build();

@@ -11,7 +11,7 @@ public partial class Product
     public long? UnitsInStock { get; set; }
     public long? UnitsOnOrder { get; set; }
     public long? ReorderLevel { get; set; }
-    public byte[] Discontinued { get; set; } = null!;
-    public byte[]? DiscontinuedDate { get; set; }
+    public bool Discontinued { get; set; }
+    public DateTime? DiscontinuedDate { get; set; }
 
 }

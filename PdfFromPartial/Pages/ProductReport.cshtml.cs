@@ -1,8 +1,10 @@
+using DinkToPdf;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using PdfFromPartial.Models;
 using PdfFromPartial.Renderers;
 using PdfFromPartial.Services;
+using System.Net.Mime;
 
 namespace PdfFromPartial.Pages
 {
@@ -11,14 +13,17 @@ namespace PdfFromPartial.Pages
         private readonly IProductManager productManager;
         private readonly IWebHostEnvironment environment;
         private readonly IRazorTemplateRenderer renderer;
-        private readonly IPdfGenerator pdf;
+        private readonly IPdfGenerator pdfGenerator;
 
-        public ProductReportModel(IProductManager productManager, IWebHostEnvironment environment, IRazorTemplateRenderer renderer, IPdfGenerator pdf)
+        public ProductReportModel(IProductManager productManager, 
+            IWebHostEnvironment environment, 
+            IRazorTemplateRenderer renderer, 
+            IPdfGenerator pdfGenerator)
         {
             this.productManager = productManager;
             this.environment = environment;
             this.renderer = renderer;
-            this.pdf = pdf;
+            this.pdfGenerator = pdfGenerator;
         }
 
         public List<Product> Products { get; set; }
@@ -27,7 +32,16 @@ namespace PdfFromPartial.Pages
         {
             Products = await productManager.GetProducts();
             var html = await renderer.RenderPartialToStringAsync("_ProductReport", this);
-            return File("", "");
+            var globalSettings = new GlobalSettings
+            {
+                Orientation = Orientation.Portrait,
+                PaperSize = PaperKind.A4,
+            };
+            var objectSettings = new ObjectSettings()
+            {
+                HtmlContent = html
+            };
+            return File(pdfGenerator.Render(globalSettings, objectSettings), MediaTypeNames.Application.Pdf, "Reorder Report.pdf");
         }
     }
 }

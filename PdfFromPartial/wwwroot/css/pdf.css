@@ -6,66 +6,31 @@
   font-family: "Open Sans Bold";
   src: url(../fonts/OpenSans-Bold.ttf) format("truetype");
 }
+
 body {
   font-family: "Open Sans Regular";
 }
 
 h1, h2, h3, h4 {
-  font-family: "Open Sans Bold";
+  font-weight:normal;
 }
 
-.col-1 {
-  width: 8.3333%;
+table {
+    page-break-inside: auto;
 }
 
-.col-2 {
-  width: 16.6667%;
+tr {
+    page-break-inside: avoid;
+    page-break-after: auto;
 }
 
-.col-3 {
-  width: 25%;
+thead {
+    display: table-header-group;
 }
 
-.col-4 {
-  width: 33.3333%;
+tfoot {
+    display: table-footer-group;
 }
-
-.col-5 {
-  width: 41.6667%;
-}
-
-.col-6 {
-  width: 50%;
-}
-
-.col-7 {
-  width: 58.3333%;
-}
-
-.col-8 {
-  width: 66.66667%;
-}
-
-.col-9 {
-  width: 75%;
-}
-
-.col-10 {
-  width: 83.3333%;
-}
-
-.col-11 {
-  width: 91.6667%;
-}
-
-.col-12 {
-  width: 100%;
-}
-
-.fw-bold {
-  font-weight: bold;
-}
-
-.text-black-50 {
-  color: rgba(0, 0, 0, 0.5);
+.align-center{
+    text-align:center;
 }
