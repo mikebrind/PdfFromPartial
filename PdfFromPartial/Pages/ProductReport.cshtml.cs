@@ -1,8 +1,8 @@
-using PdfFromPartial.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
+using PdfFromPartial.Models;
 using PdfFromPartial.Renderers;
+using PdfFromPartial.Services;
 
 namespace PdfFromPartial.Pages
 {
@@ -21,10 +21,13 @@ namespace PdfFromPartial.Pages
             this.pdf = pdf;
         }
 
+        public List<Product> Products { get; set; }
         public string WebRootPath => environment.WebRootPath;
-        public async Task<FileResult> OnGet()
+        public async Task<FileResult> OnGetAsync()
         {
-
+            Products = await productManager.GetProducts();
+            var html = await renderer.RenderPartialToStringAsync("_ProductReport", this);
+            return File("", "");
         }
     }
 }

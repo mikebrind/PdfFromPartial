@@ -15,4 +15,7 @@ public class ProductManager : IProductManager
         .Where(x => x.ProductName.ToLower().Contains(filter.ToLower()))
         .OrderBy(x => x)
         .ToListAsync();
+
+    public async Task<List<Product>> GetProducts() => await context.Products.ToListAsync();
+       
 }
