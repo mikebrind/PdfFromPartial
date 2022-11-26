@@ -1,4 +1,4 @@
-﻿@model List<Product>
+﻿@model ChromeVersionModel
 @using PdfFromPartial.Models
 @{
     Layout = null;
@@ -6,12 +6,17 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <base href="@Model.BaseHref" />
     <link href="/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="/css/bootstrap-icons.css" rel="stylesheet" type="text/css" />
     <link href="/css/pdf.css" rel="stylesheet" type="text/css" />
+        <style>
+        @@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400&display=swap');
+        @@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css");
+</style>
 </head>
 <body>
-    @if (Model.Any())
+    @if (Model.Products.Any())
     {
         <h2 class="my-5">Reorder Report</h2>
         <table class="table table-striped">
@@ -25,7 +30,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var product in Model.OrderBy(p => p.ProductName))
+                @foreach (var product in Model.Products.OrderBy(p => p.ProductName))
                 {
                     <tr class="@(product.Discontinued ? "text-black-50" : null)">
                         <td>@product.ProductName</td>
