@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\css\bootstrap-icons.css" />
+  </ItemGroup>
+
+  <ItemGroup>
+		<PackageReference Include="ChromeHtmlToPdf" Version="2.6.6" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.0" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.0" />
 		<PackageReference Include="DinkToPdf" Version="1.0.8" />

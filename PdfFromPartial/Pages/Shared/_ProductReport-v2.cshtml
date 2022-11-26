@@ -1,16 +1,17 @@
-﻿@model ProductReportModel
+﻿@model List<Product>
 @using PdfFromPartial.Models
+@{
+    Layout = null;
+}
 <!DOCTYPE html>
 <html>
 <head>
-    <link href="@System.IO.Path.Combine(Model.WebRootPath,"lib\\bootstrap\\dist\\css\\bootstrap.min.css")" rel="stylesheet" type="text/css" />
-    <link href="@System.IO.Path.Combine(Model.WebRootPath,"css\\bootstrap.min.css")" rel="stylesheet" type="text/css" />
-    <link href="@System.IO.Path.Combine(Model.WebRootPath,"css\\bootstrap-icons.css")" rel="stylesheet" type="text/css" />
-    <link href="@System.IO.Path.Combine(Model.WebRootPath,"css\\pdf.css")" rel="stylesheet" type="text/css" />
-
+    <link href="/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/bootstrap-icons.css" rel="stylesheet" type="text/css" />
+    <link href="/css/pdf.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-    @if (Model.Products.Any())
+    @if (Model.Any())
     {
         <h2 class="my-5">Reorder Report</h2>
         <table class="table table-striped">
@@ -24,7 +25,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var product in Model.Products.OrderBy(p => p.ProductName))
+                @foreach (var product in Model.OrderBy(p => p.ProductName))
                 {
                     <tr class="@(product.Discontinued ? "text-black-50" : null)">
                         <td>@product.ProductName</td>

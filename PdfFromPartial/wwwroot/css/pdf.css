@@ -1,14 +1,12 @@
 ﻿@font-face {
-  font-family: "Open Sans Regular";
-  src: url(../fonts/OpenSans-Regular.ttf) format("truetype");
-}
-@font-face {
-  font-family: "Open Sans Bold";
-  src: url(../fonts/OpenSans-Bold.ttf) format("truetype");
+  font-family: "Open Sans";
+  src: url(../fonts/OpenSans-Regular.ttf) format("truetype"),
+      url(../fonts/OpenSans-Bold.ttf) format("truetype");
 }
 
 body {
-  font-family: "Open Sans Regular";
+  font-family: "Open Sans";
+  font-size:0.9rem;
 }
 
 h1, h2, h3, h4 {

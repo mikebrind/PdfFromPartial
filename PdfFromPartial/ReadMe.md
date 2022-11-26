@@ -7,11 +7,12 @@
 3. Add the renderer interface and implementation from [Rendering A Partial To A String In Razor Pages](https://www.mikesdotnetting.com/article/332/rendering-a-partial-to-a-string-in-razor-pages).
 4. Register with the services container with a scoped lifetime, because it depends on other scoped services
 5. Add the IPdfGenerator and implementation and register as a singleton with the container
-6. Add bootstrap 3 because flex is not supported by wkhtml
+6. Add older vertsion of bootstrap (3) because flex is not supported by wkhtml
 7. Create additional styles in pdf.css
 8. Add web fonts to the wwwroot folder
 9. Create a template, referencing WebRootPath to generate file paths at runtime
 10. Use WebRootPath to reference css files, ensuring that  `rel="stylesheet"` is included in the link
+11. 
 
 
 
