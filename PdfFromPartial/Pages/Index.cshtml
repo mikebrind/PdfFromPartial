@@ -5,6 +5,7 @@
 }
 
 <div class="text-center">
-    <a asp-page="/ProductReport" class="btn btn-outline-primary">Get Reorder Report</a> 
-    <a asp-page="/ChromeVersion" class="btn btn-outline-primary">Chrome Version</a>
+    <a asp-page="/ProductReport" class="btn btn-outline-primary">DinkToPDF (Partial)</a> 
+    <a asp-page="/ChromeVersion" asp-page-handler="ReportFromPartial" class="btn btn-outline-primary">Chrome Html To Pdf Partial</a>
+    <a asp-page="/ChromeVersion" asp-page-handler="ReportFromUrl" class="btn btn-outline-primary">Chrome Html To Pdf URL</a>
 </div>

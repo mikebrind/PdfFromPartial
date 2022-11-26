@@ -41,7 +41,7 @@ namespace PdfFromPartial.Pages
             {
                 HtmlContent = html
             };
-            return File(pdfGenerator.Render(globalSettings, objectSettings), MediaTypeNames.Application.Pdf, "Reorder Report.pdf");
+            return File(pdfGenerator.Render(globalSettings, objectSettings), MediaTypeNames.Application.Pdf, "Reorder Report (DinkToPDF from partial.pdf");
         }
     }
 }

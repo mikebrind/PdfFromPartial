@@ -25,7 +25,7 @@ namespace PdfFromPartial.Pages
         }
         public List<Product> Products { get; set; } = new();
         public string BaseHref => $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}";
-        public async Task<FileResult> OnGetAsync()
+        public async Task<FileResult> OnGetReportFromPartialAsync()
         {
             Products = await productManager.GetProducts();
             var html = await renderer.RenderPartialToStringAsync("_ProductReport-v2", this);
@@ -34,15 +34,18 @@ namespace PdfFromPartial.Pages
             var pageSettings = new PageSettings(ChromeHtmlToPdfLib.Enums.PaperFormat.A4);
             converter.ConvertToPdf(html, stream, pageSettings);
             stream.Position = 0;
-            return File(stream, MediaTypeNames.Application.Pdf, "Reorder Report (Chrome).pdf");
+            return File(stream, MediaTypeNames.Application.Pdf, "Reorder Report (Chrome from partial).pdf");
+        }
+        public FileResult OnGetReportFromUrl()
+        {
+            using var converter = new Converter();
+            var stream = new MemoryStream();
+            var pageSettings = new PageSettings(ChromeHtmlToPdfLib.Enums.PaperFormat.A4);
+            var url = $"{Request.Scheme}://{Request.Host}{Url.Page("/Pdfs/ReorderReport")}";
+            converter.ConvertToPdf(new ConvertUri(url), stream, pageSettings);
+            stream.Position = 0;
+            return File(stream, MediaTypeNames.Application.Pdf, "Reorder Report (Chrome from URL).pdf");
         }
     }
 }
 
-//using var converter = new Converter();
-//var stream = new MemoryStream();
-//var pageSettings = new PageSettings(ChromeHtmlToPdfLib.Enums.PaperFormat.A4);
-//var url = $"{Request.Scheme}://{Request.Host}{Url.Page("/Pdfs/ReorderReport")}";
-//converter.ConvertToPdf(new ConvertUri(url), stream, pageSettings);
-//stream.Position = 0;
-//return File(stream, MediaTypeNames.Application.Pdf, "Reorder Report (Chrome).pdf");

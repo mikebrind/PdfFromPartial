@@ -12,7 +12,7 @@
 8. Add web fonts to the wwwroot folder
 9. Create a template, referencing WebRootPath to generate file paths at runtime
 10. Use WebRootPath to reference css files, ensuring that  `rel="stylesheet"` is included in the link
-11. 
+11. Set base href for Chrome and use @import for external fonts
 
 
 
