@@ -42,21 +42,7 @@ namespace PdfFromPartial.Pages
                 HtmlContent = html,
 
             };
-            return File(pdfGenerator.Render(globalSettings, objectSettings), MediaTypeNames.Application.Pdf, "Reorder Report (DinkToPDF from partial.pdf");
-        }
-
-        public async Task<FileResult> OnGetReportFromUrlAsync()
-        {
-            var globalSettings = new GlobalSettings
-            {
-                Orientation = Orientation.Portrait,
-                PaperSize = PaperKind.A4,
-            };
-            var objectSettings = new ObjectSettings()
-            {
-                Page = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{Url.Page("/Pdfs/ReorderReport")}"
-            };
-            return File(pdfGenerator.Render(globalSettings, objectSettings), MediaTypeNames.Application.Pdf, "Reorder Report (DinkToPDF from partial.pdf");
+            return File(pdfGenerator.Render(globalSettings, objectSettings), MediaTypeNames.Application.Pdf, "Reorder Report (DinkToPDF from partial).pdf");
         }
     }
 }

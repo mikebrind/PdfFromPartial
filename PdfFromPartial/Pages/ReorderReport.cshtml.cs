@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using PdfFromPartial.Models;
 using PdfFromPartial.Services;
 
-namespace PdfFromPartial.Pages.Pdfs
+namespace PdfFromPartial.Pages
 {
     public class ReorderReportModel : PageModel
     {
