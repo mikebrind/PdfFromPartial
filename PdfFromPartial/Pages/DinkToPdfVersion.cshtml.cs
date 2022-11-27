@@ -8,14 +8,14 @@ using System.Net.Mime;
 
 namespace PdfFromPartial.Pages
 {
-    public class ProductReportModel : PageModel
+    public class DinkToPdfVersionModel : PageModel
     {
         private readonly IProductManager productManager;
         private readonly IWebHostEnvironment environment;
         private readonly IRazorTemplateRenderer renderer;
         private readonly IPdfGenerator pdfGenerator;
 
-        public ProductReportModel(IProductManager productManager, 
+        public DinkToPdfVersionModel(IProductManager productManager, 
             IWebHostEnvironment environment, 
             IRazorTemplateRenderer renderer, 
             IPdfGenerator pdfGenerator)
