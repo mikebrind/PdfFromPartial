@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using PdfFromPartial.Models;
 using PdfFromPartial.Renderers;
 using PdfFromPartial.Services;
+using System.Diagnostics;
 using System.Net.Mime;
 
 namespace PdfFromPartial.Pages
@@ -18,17 +19,30 @@ namespace PdfFromPartial.Pages
             this.productManager = productManager;
             this.renderer = renderer;
         }
-        public string BaseHref => $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}";
+        string BaseHref => $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}";
         public List<Product> Products { get; set; } = new();
-        public async Task<FileResult> OnGetAsync()
+        public async Task<FileResult> OnGetReportFromPartialAsync()
         {
             using var stream = new MemoryStream();
             Products = await productManager.GetProducts();
             var html = await renderer.RenderPartialToStringAsync("_ProductReport-v3", this);
-            ConverterProperties converterProperties = new ConverterProperties();
+            ConverterProperties converterProperties = new ();
+            converterProperties.SetBaseUri(BaseHref);
+            // FileInfo, Stream or String
             HtmlConverter.ConvertToPdf(html, stream, converterProperties);
- 
             return File(stream.ToArray(), MediaTypeNames.Application.Pdf, "Reorder Report (iText from partial).pdf");
+        }
+
+        public async Task<FileResult> OnGetReportFromUrlAsync()
+        {
+            using var stream = new MemoryStream();
+            var client = new HttpClient();
+            var responseStream = await client.GetStreamAsync($"{BaseHref}{Url.Page("/Pdfs/ReorderReport")}");
+            ConverterProperties converterProperties = new();
+            converterProperties.SetBaseUri(BaseHref);
+            // FileInfo, Stream or String
+            HtmlConverter.ConvertToPdf(responseStream, stream, converterProperties);
+            return File(stream.ToArray(), MediaTypeNames.Application.Pdf, "Reorder Report (iText from YURL).pdf");
         }
     }
 }
