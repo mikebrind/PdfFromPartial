@@ -24,12 +24,12 @@ namespace PdfFromPartial.Pages
         public async Task<FileResult> OnGetReportFromPartialAsync()
         {
             Products = await productManager.GetProducts();
-            var html = await renderer.RenderPartialToStringAsync("_ProductReport-v3", this);
+            var html = await renderer.RenderPartialToStringAsync("_ProductReport-itext", this);
             ConverterProperties converterProperties = new();
             converterProperties.SetBaseUri(BaseHref);
             using var stream = new MemoryStream();
             HtmlConverter.ConvertToPdf(html, stream, converterProperties);
-            return File(stream.ToArray(), MediaTypeNames.Application.Pdf, "Reorder Report (iText from partial).pdf");
+            return File(stream.ToArray(), MediaTypeNames.Application.Pdf, "Reorder Report (iText).pdf");
         }
     }
 }

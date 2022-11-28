@@ -3,7 +3,6 @@ using DinkToPdf;
 using PdfFromPartial.Renderers;
 using PdfFromPartial.Services;
 using PdfFromPartial.Server.Data;
-using PdfFromPartial.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

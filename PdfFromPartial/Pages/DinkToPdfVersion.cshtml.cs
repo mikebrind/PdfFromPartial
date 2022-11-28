@@ -26,12 +26,12 @@ namespace PdfFromPartial.Pages
             this.pdfGenerator = pdfGenerator;
         }
 
-        public List<Product> Products { get; set; }
+        public List<Product> Products { get; set; } = new();
         public string WebRootPath => environment.WebRootPath;
         public async Task<FileResult> OnGetReportFromPartialAsync()
         {
             Products = await productManager.GetProducts();
-            var html = await renderer.RenderPartialToStringAsync("_ProductReport", this);
+            var html = await renderer.RenderPartialToStringAsync("_ProductReport-dink", this);
             var globalSettings = new GlobalSettings
             {
                 Orientation = Orientation.Portrait,
@@ -40,9 +40,8 @@ namespace PdfFromPartial.Pages
             var objectSettings = new ObjectSettings()
             {
                 HtmlContent = html,
-
             };
-            return File(pdfGenerator.Render(globalSettings, objectSettings), MediaTypeNames.Application.Pdf, "Reorder Report (DinkToPDF from partial).pdf");
+            return File(pdfGenerator.Render(globalSettings, objectSettings), MediaTypeNames.Application.Pdf, "Reorder Report (DinkToPDF).pdf");
         }
     }
 }

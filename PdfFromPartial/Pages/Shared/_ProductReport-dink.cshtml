@@ -1,16 +1,19 @@
-﻿@model ITextVersionModel
+﻿@model DinkToPdfVersionModel
 @using PdfFromPartial.Models
 <!DOCTYPE html>
 <html>
 <head>
-    <link href="/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="/css/bootstrap-icons.css" rel="stylesheet" type="text/css" />
-    <link href="/css/pdf.css" rel="stylesheet" type="text/css" />
+    <link href="@System.IO.Path.Combine(Model.WebRootPath,"lib\\bootstrap\\dist\\css\\bootstrap.min.css")" rel="stylesheet" type="text/css" />
+    <link href="@System.IO.Path.Combine(Model.WebRootPath,"css\\bootstrap-icons.css")" rel="stylesheet" type="text/css" />
+    <link href="@System.IO.Path.Combine(Model.WebRootPath,"css\\pdf.css")" rel="stylesheet" type="text/css" />
 </head>
 <body>
     @if (Model.Products.Any())
     {
-        <h2 class="my-5">Reorder Report</h2>
+        <div class="d-flex justify-content-between my-5">
+            <h1>Reorder Report</h1> 
+            <img src="@System.IO.Path.Combine(Model.WebRootPath,"images\\logo.png")" />
+        </div>
         <table class="table table-striped">
             <thead>
                 <tr>

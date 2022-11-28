@@ -24,12 +24,12 @@ namespace PdfFromPartial.Pages
         public async Task<FileResult> OnGetReportFromPartialAsync()
         {
             Products = await productManager.GetProducts();
-            var html = await renderer.RenderPartialToStringAsync("_ProductReport-v2", this);
+            var html = await renderer.RenderPartialToStringAsync("_ProductReport-chrome", this);
             var pageSettings = new PageSettings(ChromeHtmlToPdfLib.Enums.PaperFormat.A4);
             var stream = new MemoryStream();
             using var converter = new Converter();
             converter.ConvertToPdf(html, stream, pageSettings);
-            return File(stream.ToArray(), MediaTypeNames.Application.Pdf, "Reorder Report (Chrome from partial).pdf");
+            return File(stream.ToArray(), MediaTypeNames.Application.Pdf, "Reorder Report (Chrome).pdf");
         }
     }
 }
